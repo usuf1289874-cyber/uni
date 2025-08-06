@@ -107,63 +107,78 @@ user_problem_statement: "Создать современный сайт детс
 backend:
   - task: "API для получения пакетов абонементов"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Реализован endpoint /api/packages для получения списка пакетов плавания с ценами в тенге"
+        - working: true
+          agent: "testing"
+          comment: "✅ TESTED: GET /api/packages возвращает все 4 пакета плавания (baby_splash, junior_swim, aqua_kids, individual) с корректными ценами в KZT и структурой данных"
 
   - task: "API регистрации пользователя"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Реализован endpoint /api/register для регистрации родителя и ребенка с валидацией данных"
+        - working: true
+          agent: "testing"
+          comment: "✅ TESTED: POST /api/register успешно создает регистрацию с UUID, корректно валидирует пакеты, отклоняет невалидные пакеты с 400 статусом"
 
   - task: "Stripe интеграция для создания сессии оплаты"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Интегрирован Stripe через emergentintegrations с созданием checkout сессии, записью в БД payment_transactions"
+        - working: true
+          agent: "testing"
+          comment: "✅ TESTED: POST /api/checkout/session успешно создает Stripe checkout сессию, возвращает корректный checkout_url от stripe.com, session_id и registration_id. Исправлена конфигурация STRIPE_API_KEY в supervisor"
 
   - task: "API проверки статуса платежа"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Реализован endpoint /api/checkout/status/{session_id} с polling механизмом для проверки оплаты"
+        - working: true
+          agent: "testing"
+          comment: "✅ TESTED: GET /api/checkout/status/{session_id} корректно работает с Stripe API, возвращает статус платежа, amount_total, currency и metadata"
 
   - task: "Stripe webhook обработка"
     implemented: true
-    working: "NA"
+    working: true
     file: "/app/backend/server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
           agent: "main"
           comment: "Реализован webhook endpoint /api/webhook/stripe для обработки событий от Stripe"
+        - working: true
+          agent: "testing"
+          comment: "✅ TESTED: POST /api/webhook/stripe корректно валидирует Stripe-Signature, отклоняет запросы без подписи с 400 статусом"
 
 frontend:
   - task: "Responsive дизайн сайта"
