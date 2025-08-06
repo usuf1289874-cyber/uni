@@ -101,3 +101,186 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Создать современный сайт детского бассейна UniBaby с функциями: современный дизайн, переключение тренеров, блок абонементов, модальное окно регистрации при оплате, интеграция с 2GIS картами (API ключ: 43f2e69b-d76c-4a96-ae35-a5434860146c), меню-шторка, интеграция с Stripe платежами"
+
+backend:
+  - task: "API для получения пакетов абонементов"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Реализован endpoint /api/packages для получения списка пакетов плавания с ценами в тенге"
+
+  - task: "API регистрации пользователя"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Реализован endpoint /api/register для регистрации родителя и ребенка с валидацией данных"
+
+  - task: "Stripe интеграция для создания сессии оплаты"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Интегрирован Stripe через emergentintegrations с созданием checkout сессии, записью в БД payment_transactions"
+
+  - task: "API проверки статуса платежа"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Реализован endpoint /api/checkout/status/{session_id} с polling механизмом для проверки оплаты"
+
+  - task: "Stripe webhook обработка"
+    implemented: true
+    working: "NA"
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Реализован webhook endpoint /api/webhook/stripe для обработки событий от Stripe"
+
+frontend:
+  - task: "Responsive дизайн сайта"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Создан современный адаптивный дизайн с hero секцией, градиентами, анимациями"
+
+  - task: "Переключение тренеров"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Реализовано переключение между тремя тренерами с анимированными карточками"
+
+  - task: "Блок абонементов с ценами"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Динамическое отображение пакетов с API, показ цены в тенге, кнопка оплаты"
+
+  - task: "Модальное окно регистрации"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Форма сбора данных: имя родителя, телефон, имя ребенка, возраст, email, доп. информация"
+
+  - task: "Интеграция с 2GIS картами"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Встроена iframe карта 2GIS с API ключом 43f2e69b-d76c-4a96-ae35-a5434860146c"
+
+  - task: "Боковое меню навигации"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Анимированное боковое меню с переходами по разделам сайта"
+
+  - task: "Интеграция Stripe платежей на фронтенде"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Реализован flow: регистрация → создание checkout → редирект в Stripe → возврат с polling статуса платежа"
+
+  - task: "Обработка статусов оплаты"
+    implemented: true
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+          agent: "main"
+          comment: "Модальные окна для статусов: checking, success, expired, error с polling механизмом"
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "API для получения пакетов абонементов"
+    - "API регистрации пользователя" 
+    - "Stripe интеграция для создания сессии оплаты"
+    - "API проверки статуса платежа"
+    - "Модальное окно регистрации"
+    - "Интеграция Stripe платежей на фронтенде"
+    - "Обработка статусов оплаты"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    - agent: "main"
+      message: "Реализован полный сайт детского бассейна с Stripe интеграцией. Критические эндпоинты: /api/packages, /api/register, /api/checkout/session, /api/checkout/status/{session_id}, /api/webhook/stripe. Frontend включает регистрационную форму, интеграцию с картами 2GIS, polling механизм для проверки платежей. Требуется тестирование backend API в первую очередь."
