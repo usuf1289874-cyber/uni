@@ -30,9 +30,6 @@ app.add_middleware(
 
 # Stripe setup
 STRIPE_API_KEY = os.environ.get('STRIPE_API_KEY')
-print(f"DEBUG: STRIPE_API_KEY loaded: {'Yes' if STRIPE_API_KEY else 'No'}")
-if STRIPE_API_KEY:
-    print(f"DEBUG: STRIPE_API_KEY starts with: {STRIPE_API_KEY[:10]}...")
 
 # Swimming packages with fixed prices
 SWIMMING_PACKAGES = {
